@@ -1,9 +1,17 @@
-(function() {
+// (function() {
 
-  var txt = $('.specimen-editor textarea').css('padding', '10px');
+  var txt = $('.specimen-editor textarea').css('padding', '10px'),
+      toolbar,
+      controls;
 
   function updatePreview(event) {
-    txt.css($(this).attr('name'), $(this).val());
+    controls.each(function(i, o) {
+      txt.css($(this).attr('name'), $(this).val());
+    });
+  };
+
+  function updateFontSize(event) {
+    controls.filter('[name="font-size"]').val(txt.css('font-size'));
   };
 
   function lorem() {
@@ -42,8 +50,13 @@
   };
 
   if(!window._ttLoaded) {
-    txt.before(createToolbar());
+    toolbar = createToolbar();
+    controls = toolbar.find('input[type="text"]');
+    txt.before(toolbar);
     window._ttLoaded = true;
   }
 
-})();
+  $('.variation-switch').change(updatePreview);
+  $('.font-size-slider').bind('slide', updateFontSize);
+
+// })();
