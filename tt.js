@@ -1,6 +1,6 @@
 // (function() {
 
-  var txt = $('.specimen-editor textarea').css('padding', '10px'),
+  var txt = $('.specimen-editor textarea'),
       toolbar,
       controls;
 
