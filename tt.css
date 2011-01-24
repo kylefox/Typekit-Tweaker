@@ -1,5 +1,5 @@
 #tt-tb {
-  background: #2C2A25;
+  background: -webkit-gradient(linear, left top, left bottom, from(#35332d), to(#1a1815));
   font: normal 12px/16px "Helvetica Neue", Arial, sans-serif;
   overflow: hidden;
   -webkit-border-radius: 16px;
@@ -12,6 +12,10 @@
   padding: 10px 20px;
   border-right: 1px solid #000;
   border-left: 1px solid rgba(255,255,255,.1);
+}
+
+#tt-tb .widget:last-child {
+  border-right: none;
 }
 
 #tt-tb .lorem.widget {
@@ -41,11 +45,14 @@
 
 #tt-tb label { color: #fff; font-size: 11px; line-height: 12px; display: block; font-weight: bold; }
 
+#tt-tb .chk label { display: inline; }
+#tt-tb .chk p { margin: 0; line-height: 22px; }
+
 #tt-tb input[type="text"] {
   margin-top: 6px;
   -webkit-border-radius: 4px;
   padding: 3px;
-  width: 40px;
+  width: 50px;
   height: 18px;
   line-height: 18px;
   font-size: 12px;
