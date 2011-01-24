@@ -6,6 +6,26 @@
       controls,
       currentSetting,
       defaultSetting = {'line-height': '1.50em', 'font-size': '16px', color: '#444', background: '#fff'};
+  
+  // Given a string like "#444" or "#FF0099", return and object of the RGB decimal values.
+  function parseRGB(hexString) {
+    hexString = hexString.replace('#', '');
+    var r, g, b;
+    if(hexString.length === 3) {
+      r = hexString[0] + hexString[0];
+      g = hexString[1] + hexString[1];
+      b = hexString[2] + hexString[2];
+    } else if(hexString.length === 6) {
+      r = hexString.substring(0, 2);
+      g = hexString.substring(2, 4);
+      b = hexString.substring(4, 6);
+    }
+    return {
+      r: parseInt(r, 16),
+      g: parseInt(g, 16),
+      b: parseInt(b, 16)
+    };
+  }
 
   function updatePreview(event) {
     controls.each(function(i, o) {
