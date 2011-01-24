@@ -27,6 +27,18 @@
     };
   }
 
+  function rgbToHex(color) {
+    return "#" + color.r.toString(16) + color.g.toString(16) + color.b.toString(16);
+  };
+  
+  function adjustLightness(color, factor) {
+    return {
+      r: ((color.r * factor) > 255) ? 255 : (color.r * factor),
+      g: ((color.g * factor) > 255) ? 255 : (color.g * factor),
+      b: ((color.b * factor) > 255) ? 255 : (color.b * factor)
+    };    
+  };
+
   function updatePreview(event) {
     controls.each(function(i, o) {
       txt.css($(this).attr('name'), $(this).val());
