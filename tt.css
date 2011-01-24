@@ -43,9 +43,10 @@
   background: #85b12c;
 }
 
-#tt-tb label { color: #fff; font-size: 11px; line-height: 12px; display: block; font-weight: bold; }
+#tt-tb label { color: #fff; font-size: 11px; line-height: 12px; display: block; font-weight: bold; cursor: pointer; }
 
-#tt-tb .chk label { display: inline; }
+#tt-tb .chk label { display: inline; color: #aaa; }
+#tt-tb .chk label:hover { color: #fff; }
 #tt-tb .chk p { margin: 0; line-height: 22px; }
 
 #tt-tb input[type="text"] {

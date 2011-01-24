@@ -5,7 +5,7 @@
       toolbar,
       controls,
       currentSetting,
-      defaultSetting = {'line-height': '1.5em', 'font-size': '16px', color: '#444', background: '#fff'};
+      defaultSetting = {'line-height': '1.50em', 'font-size': '16px', color: '#444', background: '#fff'};
 
   function updatePreview(event) {
     controls.each(function(i, o) {
@@ -34,11 +34,13 @@
     return $('<div class="widget" />').append(l).append(i);
   }
   
-  function createCheckbox(label, property, yesValue, noValue) {
-    var chk = $('<input type="checkbox" >').click(function(event) { txt.css(property, $(this).attr('checked') ? yesValue : noValue); }),
-        label = '<label for="">' + label + '</label>';
+  function createCheckbox(label, property, yesValue, noValue, help) {
+    var chk = $('<input type="checkbox" >')
+                .click(function(event) { txt.css(property, $(this).attr('checked') ? yesValue : noValue); })
+                .attr('id', 'tt-' + property),
+        lbl = '<label for="tt-' + property + '" title="' + help + '">' + label + '</label>';
     
-    return $('<p></p>').append(chk).append(label);
+    return $('<p></p>').append(chk).append(lbl);
   };
 
   function createToolbar() {
@@ -49,8 +51,8 @@
               .append(createControl('color', 'Color', txt.css('color')))
               .append(createControl('background', 'Background', txt.css('background'))),
         chks = $('<div class="chk widget"></div>')
-              .append(createCheckbox('Antialias', '-webkit-font-smoothing', 'antialiased', 'subpixel-antialiased'))
-              .append(createCheckbox('Small caps', 'font-variant', 'small-caps', 'normal'));
+              .append(createCheckbox('Antialias', '-webkit-font-smoothing', 'antialiased', 'subpixel-antialiased', 'Toggle -webkit-font-smoothing: antialiased;'))
+              .append(createCheckbox('Small caps', 'font-variant', 'small-caps', 'normal', 'Toggle small-caps'));
     tb.append(chks);
     return tb;
   };
@@ -66,9 +68,12 @@
     if(isNaN(newVal) || newVal <= 0) {
       newVal = 0; // TODO: Set to a field default.
     }
+    if(units === 'em') {
+      newVal = newVal.toFixed(2);
+    }
     $(this).val(newVal + units);
     updatePreview();
-    return false;
+    event.preventDefault();
   };
   
   function loadSetting(setting) {
