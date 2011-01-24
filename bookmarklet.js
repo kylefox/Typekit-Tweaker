@@ -5,15 +5,17 @@ function tt() {
     b = d.body;
     try {
         if (!b) throw (0);
-        console.log("Loading script & CSS...");
         c.setAttribute('href', 'http://dl.dropbox.com/u/780754/typekit_tweaker/tt.css');
         c.setAttribute('rel', 'stylesheet');
         d.head.appendChild(c);
         z.setAttribute('src', 'http://dl.dropbox.com/u/780754/typekit_tweaker/tt.js');
+        z.onload = function() {
+          window.tt.tweaker = new tt.Tweaker($('.specimen-editor textarea'));
+        };
         b.appendChild(z);
     } catch(e) {
-        console.log('Please wait until the page has loaded.');
+        alert('Please wait until the page has loaded.');
     }
-}
+};
 tt();
 void(0);

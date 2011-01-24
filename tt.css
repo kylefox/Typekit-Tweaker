@@ -43,7 +43,15 @@
   background: #85b12c;
 }
 
-#tt-tb label { color: #fff; font-size: 11px; line-height: 12px; display: block; font-weight: bold; cursor: pointer; }
+#tt-tb label {
+  text-transform: capitalize;
+  color: #fff;
+  font-size: 11px;
+  line-height: 12px;
+  display: block;
+  font-weight: bold;
+  cursor: pointer;
+}
 
 #tt-tb .chk label { display: inline; color: #aaa; }
 #tt-tb .chk label:hover { color: #fff; }
@@ -53,7 +61,7 @@
   margin-top: 6px;
   -webkit-border-radius: 4px;
   padding: 3px;
-  width: 50px;
+  width: 55px;
   height: 18px;
   line-height: 18px;
   font-size: 12px;
