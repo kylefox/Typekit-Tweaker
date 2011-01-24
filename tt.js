@@ -2,6 +2,7 @@
 
   var txt = $('.specimen-editor textarea'),
       LOREM = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
+      ADJUST_LIGHTNESS = 0.05,
       toolbar,
       controls,
       currentSetting,
@@ -21,21 +22,21 @@
       b = hexString.substring(4, 6);
     }
     return {
-      r: parseInt(r, 16),
-      g: parseInt(g, 16),
-      b: parseInt(b, 16)
+      r: Math.round(parseInt(r, 16)),
+      g: Math.round(parseInt(g, 16)),
+      b: Math.round(parseInt(b, 16))
     };
   }
 
   function rgbToHex(color) {
-    return "#" + color.r.toString(16) + color.g.toString(16) + color.b.toString(16);
+    return "#" + Math.round(color.r).toString(16) + Math.round(color.g).toString(16) + Math.round(color.b).toString(16);
   };
   
   function adjustLightness(color, factor) {
     return {
-      r: ((color.r * factor) > 255) ? 255 : (color.r * factor),
-      g: ((color.g * factor) > 255) ? 255 : (color.g * factor),
-      b: ((color.b * factor) > 255) ? 255 : (color.b * factor)
+      r: Math.round(((color.r * factor) > 255) ? 255 : (color.r * factor)),
+      g: Math.round(((color.g * factor) > 255) ? 255 : (color.g * factor)),
+      b: Math.round(((color.b * factor) > 255) ? 255 : (color.b * factor))
     };    
   };
 
@@ -89,10 +90,20 @@
     return tb;
   };
 
+  function spinColor(input, lighten) {
+    input.val(rgbToHex(adjustLightness(parseRGB(input.val()), lighten ? 1+ADJUST_LIGHTNESS : 1-ADJUST_LIGHTNESS)));
+    updatePreview();
+  };
+
   function spin(event) {
     var UP = event.keyCode === $.ui.keyCode.UP,
-        DOWN = event.keyCode === $.ui.keyCode.DOWN;
+        DOWN = event.keyCode === $.ui.keyCode.DOWN,
+        name = $(this).attr('name');
     if(!UP && !DOWN) return;
+    if(name === 'color' || name === 'background') {
+      spinColor($(this), UP);
+      return;
+    }
     var units = $(this).val().replace('.', '').replace(/\d+/, '') || 'px',
         amt = (units === 'px' ? 1 : 0.05),
         val = Number($(this).val().slice(0, -2)),
@@ -117,7 +128,7 @@
   if(!window._ttLoaded) {
     toolbar = createToolbar();
     controls = toolbar.find('input[type="text"]');
-    controls.filter('[name="font-size"],[name="line-height"]').keydown(spin);
+    controls.filter('input[type="text"]').keydown(spin);
     txt.before(toolbar);
     if(!currentSetting) loadSetting(defaultSetting);
     txt.val(LOREM);
