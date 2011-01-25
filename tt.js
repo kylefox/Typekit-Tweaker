@@ -138,11 +138,11 @@
       // Text inputs
       _controls.keydown(function(event) {
         if(event.keyCode === $.ui.keyCode.UP || event.keyCode === $.ui.keyCode.DOWN) {
-          spin($(this), event.keyCode === $.ui.keyCode.UP);
           event.preventDefault();
+          spin($(this), event.keyCode === $.ui.keyCode.UP);
         };
         self.refresh();
-      }).change(_refresh);
+      }).change(_refresh).keyup(_refresh);
       
       // Checkboxes
       _toolbar.find('input[type="checkbox"]').click(_refresh);
