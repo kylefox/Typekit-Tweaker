@@ -34,7 +34,12 @@
     
     // Takes an RGB object and converts it into a hex string.
     rgbToHex: function(color) {
-      return "#" + Math.round(color.r).toString(16) + Math.round(color.g).toString(16) + Math.round(color.b).toString(16);
+      var f = function(n) {
+        var s = Math.round(n).toString(16);
+        if(s.length === 1) s = "0" + s;
+        return s;
+      };
+      return "#" + f(color.r) + f(color.g) + f(color.b);
     },
     
     // Brightens or darkens a color.
