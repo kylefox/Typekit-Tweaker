@@ -2,9 +2,9 @@
   
   window.tt = {
     VERSION: 0.1,
-    DEFAULTS: {'line-height': '1.50em', 'font-size': '16px', color: '#444', background: '#fff'},
+    DEFAULTS: {'line-height': '1.50em', 'font-size': '16px', color: '#444444', background: '#FFFFFF'},
     LOREM: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    ADJUST_LIGHTNESS: 0.1
+    ADJUST_LIGHTNESS: 0.2
   };
   
   
@@ -39,15 +39,19 @@
         if(s.length === 1) s = "0" + s;
         return s;
       };
-      return "#" + f(color.r) + f(color.g) + f(color.b);
+      return ("#" + f(color.r) + f(color.g) + f(color.b)).toUpperCase();
     },
     
     // Brightens or darkens a color.
     adjustLightness: function(color, factor) {
+      var f = function(n) {
+        var r = (n * factor > 255) ? 255 : (n * factor);
+        return (factor < 1) ? Math.floor(r) : Math.ceil(r);
+      };
       return {
-        r: Math.round(((color.r * factor) > 255) ? 255 : (color.r * factor)),
-        g: Math.round(((color.g * factor) > 255) ? 255 : (color.g * factor)),
-        b: Math.round(((color.b * factor) > 255) ? 255 : (color.b * factor))
+        r: f(color.r),
+        g: f(color.g),
+        b: f(color.b)
       };    
     }
   };
@@ -79,10 +83,13 @@
     }
     
     function spinColor(input, lighten) {
-      input.val(
-        tt.Color.rgbToHex(
-          tt.Color.adjustLightness(
-            tt.Color.parseRGB(input.val()), lighten ? 1+tt.ADJUST_LIGHTNESS : 1-tt.ADJUST_LIGHTNESS)));
+      var color = tt.Color.parseRGB(input.val());
+      if(color.r === 0 && color.g === 0 && color.b === 0 && lighten) {
+        color = {r: 1, g: 1, b: 1};
+      }
+      var adjusted = tt.Color.adjustLightness(color, lighten ? 1+tt.ADJUST_LIGHTNESS : 1-tt.ADJUST_LIGHTNESS),
+          hex = tt.Color.rgbToHex(adjusted);
+      input.val(hex);
     };
 
     function spin(input, isUp) {
@@ -178,6 +185,7 @@
     /************************************************************************
     *** GO! */
     init();
+    $('#tt-font-size').select();
   };
 
 })();
