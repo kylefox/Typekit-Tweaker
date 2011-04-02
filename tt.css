@@ -35,8 +35,10 @@
 #tt-tb .lorem.widget a {
   color: #fff;
   display: block;
-  background: #9C3;
-  text-shadow: #6EA120 1px 1px 0px;
+  background: #9C3;  
+  background: -webkit-gradient(linear, left top, left bottom, from(#9C3), to(#6EA120));
+  background: -moz-linear-gradient(#9C3, #6EA120);
+  text-shadow: #517718 1px 1px 0px;
   width: 24px;
   height: 24px;
   padding: 10px;
@@ -45,17 +47,16 @@
   font-size: 24px;
   line-height: 24px;
   font-family: Georgia, serif;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  o-border-radius: 8px;
-  border-radius: 8px;
-  -webkit-transition-duration: .25s;
-  -moz-transition-duration: .25s;
-  transition-duration: .25s;
+  -webkit-border-radius: 90px;
+  -moz-border-radius: 90px;
+  o-border-radius: 90px;
+  border-radius: 90px;
+  -webkit-transition-duration: .15s;
+  -webkit-box-shadow: inset 0 1px 1px #CCFF33, 0 1px 1px #000;
 }
 
 #tt-tb .lorem.widget a:hover {
-  background: #85b12c;
+  -webkit-transform: scale(1.1);
 }
 
 #tt-tb label {

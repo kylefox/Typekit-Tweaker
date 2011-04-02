@@ -97,12 +97,14 @@
       if(name === 'color' || name === 'background') {
         spinColor(input, isUp);
       } else {
-        var units = input.val().replace('.', '').replace(/\d+/, '') || 'px',
+        var units = input.val().replace('.', '').replace(/-?\d+/, '') || 'px',
             amt = (units === 'px' ? 1 : 0.05),
             val = Number(input.val().slice(0, -2)),
             newVal = Number(isUp ? val+=amt : val-=amt);
-        if(isNaN(newVal) || newVal <= 0) {
-          newVal = 0; // TODO: Set to a field default.
+        if(isNaN(newVal)) {
+          newVal = 0;
+        } else if(newVal <= 0 && name !== 'letter-spacing') {
+          newVal = 0;
         }
         if(units === 'em') {
           newVal = newVal.toFixed(2);
@@ -124,6 +126,7 @@
       html.push('<div class="lorem widget"><a href="#lorem" title="Insert sample text">L</a></div>');
       html.push(createControl('font-size'));
       html.push(createControl('line-height'));
+      html.push(createControl('letter-spacing'));
       html.push(createControl('color'));
       html.push(createControl('background'));
       html.push('<div class="chk widget">');
