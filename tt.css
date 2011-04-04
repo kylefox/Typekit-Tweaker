@@ -26,6 +26,7 @@
 
 #tt-tb .widget:last-child {
   border-right: none;
+  padding: 21px 0 21px 10px;
 }
 
 #tt-tb .lorem.widget {

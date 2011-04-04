@@ -1,5 +1,11 @@
 (function() {
   
+  $.log = function(msg) {
+    if(console && typeof console.log === 'function') {
+      console.log('TT: ' + msg);
+    }
+  };
+  
   window.tt = {
     VERSION: 0.1,
     DEFAULTS: {'line-height': '1.50em', 'font-size': '16px', color: '#444444', background: '#FFFFFF', 'letter-spacing': '0px'},
@@ -115,9 +121,20 @@
     
     // Initializes everything (creates toolbar & binds events).
     function init() {
+      var settings, saved = $.cookie('-tt-css');
       drawToolbar();
       bindEvents();
-      self.load(tt.DEFAULTS);
+      if(saved) {
+        try {
+          settings = JSON.parse(saved);
+        } catch(e) {
+          $.log(e);
+          settings = tt.DEFAULTS;
+        }
+      } else {
+        settings = tt.DEFAULTS;
+      }
+      self.load(settings);
     }
     
     function drawToolbar() {
@@ -130,9 +147,10 @@
       html.push(createControl('color'));
       html.push(createControl('background'));
       html.push('<div class="chk widget">');
-      html.push('<p><input id="tt-smoothing" name="-webkit-font-smoothing" value="antialiased:subpixel-antialiased" type="checkbox" /><label for="tt-smoothing" title="Turn on WebKit font smoothing">Antialiased</label></p>');
-      html.push('<p><input id="tt-small-caps" name="font-variant" value="small-caps:normal" type="checkbox" /><label for="tt-small-caps" title="Turn on small-caps">Small caps</label></p>');
-      html.push('</div></div>');
+      html.push('<p><input id="tt-smoothing" name="-webkit-font-smoothing" value="antialiased:subpixel-antialiased" type="checkbox" /><label for="tt-smoothing" title="Use antialiasing instead of subpixel-antialiasing (WebKit only)">Antialias</label></p>');
+      // html.push('<p><input id="tt-small-caps" name="font-variant" value="small-caps:normal" type="checkbox" /><label for="tt-small-caps" title="Turn on small-caps">Small caps</label></p>');
+      html.push('</div>');
+      html.push('</div>');
       _toolbar = $(html.join(''));
       _controls = _toolbar.find('input[type="text"]');
       _txt.before(_toolbar);
@@ -183,12 +201,14 @@
         css[this.name] = this.value.split(":")[this.checked ? 0 : 1];
       });
       _txt.css(css);
+      $.cookie('-tt-css', JSON.stringify(css));
     };
     
     
     /************************************************************************
     *** GO! */
     init();
+    $.log("Loaded!");
     $('#tt-font-size').select();
   };
 
