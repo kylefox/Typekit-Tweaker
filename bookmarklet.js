@@ -4,9 +4,9 @@ function tt() {
     c = d.createElement('link'),
     b = d.body;
     
-    z.setAttribute('src', 'http://dl.dropbox.com/u/780754/typekit_tweaker/tt.js');
+    z.setAttribute('src', 'http://typekit-tweaker.s3.amazonaws.com/tt.js');
     
-    c.setAttribute('href', 'http://dl.dropbox.com/u/780754/typekit_tweaker/tt.css');
+    c.setAttribute('href', 'http://typekit-tweaker.s3.amazonaws.com/tt.css');
     c.setAttribute('rel', 'stylesheet');
     
     try {
