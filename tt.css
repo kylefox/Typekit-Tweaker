@@ -105,3 +105,9 @@
   outline: none;
   color: #fff;
 }
+
+.specimen-editor textarea {
+  padding: 10px;
+  width: 710px;
+  margin-top: 5px;
+}
