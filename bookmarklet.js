@@ -1,6 +1,6 @@
 function tt() {
-    var JS = "http://typekit-tweaker.s3.amazonaws.com/tt.min.js",
-        CSS = "http://typekit-tweaker.s3.amazonaws.com/tt.min.css",
+    var JS = 'http://typekit-tweaker.s3.amazonaws.com/tt.min.js',
+        CSS = 'http://typekit-tweaker.s3.amazonaws.com/tt.min.css',
         d = document,
         z = d.createElement('scr' + 'ipt'),
         c = d.createElement('link'),
