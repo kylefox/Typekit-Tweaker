@@ -149,7 +149,7 @@
       html.push('<div class="chk widget">');
       html.push('<p><input id="tt-smoothing" name="-webkit-font-smoothing" value="antialiased:subpixel-antialiased" type="checkbox" /><label for="tt-smoothing" title="Use antialiasing instead of subpixel-antialiasing (WebKit only)">Antialias</label></p>');
       // html.push('<p><input id="tt-small-caps" name="font-variant" value="small-caps:normal" type="checkbox" /><label for="tt-small-caps" title="Turn on small-caps">Small caps</label></p>');
-			html.push('<a href="http://kylefox.ca/typekit-tweaker/">About</a>');
+			html.push('<a href="http://kylefox.ca/typekit-tweaker/" title="Typekit Tweaker, Version ' + window.tt.VERSION + '">About</a>');
       html.push('</div>');
       html.push('</div>');
       _toolbar = $(html.join(''));
