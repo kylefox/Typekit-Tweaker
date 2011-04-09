@@ -1,12 +1,14 @@
 function tt() {
-    var d = document,
-    z = d.createElement('scr' + 'ipt'),
-    c = d.createElement('link'),
-    b = d.body;
+    var JS = "http://typekit-tweaker.s3.amazonaws.com/tt.min.js",
+        CSS = "http://typekit-tweaker.s3.amazonaws.com/tt.min.css",
+        d = document,
+        z = d.createElement('scr' + 'ipt'),
+        c = d.createElement('link'),
+        b = d.body;
     
-    z.setAttribute('src', 'http://typekit-tweaker.s3.amazonaws.com/tt.js');
+    z.setAttribute('src', JS);
     
-    c.setAttribute('href', 'http://typekit-tweaker.s3.amazonaws.com/tt.css');
+    c.setAttribute('href', CSS);
     c.setAttribute('rel', 'stylesheet');
     
     try {
