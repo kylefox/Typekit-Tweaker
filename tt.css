@@ -3,6 +3,8 @@
   border-bottom: 1px solid #000;
   -webkit-box-shadow: inset 0 1px 1px rgba(255,255,255,.15);
   -moz-box-shadow: inset 0 1px 1px rgba(255,255,255,.15);
+  -o-box-shadow: inset 0 1px 1px rgba(255,255,255,.15);
+  -ms-box-shadow: inset 0 1px 1px rgba(255,255,255,.15);
   box-shadow: inset 0 1px 1px rgba(255,255,255,.15);
   background: #222;
   background: -webkit-gradient(linear, left top, left bottom, from(#35332d), to(#1a1815));
@@ -11,7 +13,7 @@
   overflow: hidden;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
-  o-border-radius: 8px;
+  -o-border-radius: 8px;
   border-radius: 8px;
   -webkit-font-smoothing: antialiased;
   margin-top: 15px;
@@ -49,9 +51,11 @@
 #tt-tb .lorem.widget a {
   color: #fff;
   display: block;
-  background: #9C3;  
-  background: -webkit-gradient(linear, left top, left bottom, from(#9C3), to(#6EA120));
-  background: -moz-linear-gradient(#9C3, #6EA120);
+  background: #9c3;  
+  background: -webkit-gradient(linear, left top, left bottom, from(#9c3), to(#6ea120));
+  background: -moz-linear-gradient(#9c3, #6ea120);
+  background-image: -o-linear-gradient(#9c3, #6ea120);
+  background-image: -ms-linear-gradient(left top, #9c3 0%, #6ea120 100%);
   text-shadow: #517718 1px 1px 0px;
   width: 24px;
   height: 24px;
@@ -63,10 +67,11 @@
   font-family: Georgia, serif;
   -webkit-border-radius: 90px;
   -moz-border-radius: 90px;
-  o-border-radius: 90px;
+  -o-border-radius: 90px;
+  -ms-border-radius: 90px;
   border-radius: 90px;
   -webkit-transition-duration: .15s;
-  -webkit-box-shadow: inset 0 1px 1px #CCFF33, 0 1px 1px #000;
+  -webkit-box-shadow: inset 0 1px 1px #ccff33, 0 1px 1px #000;
 }
 
 #tt-tb .lorem.widget a:hover {
@@ -91,7 +96,8 @@
   margin-top: 6px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  o-border-radius: 4px;
+  -o-border-radius: 4px;
+  -ms-border-radius: 4px;
   border-radius: 4px;
   padding: 3px;
   width: 60px;
@@ -108,13 +114,16 @@
   border: 1px solid rgba(0,0,0,.75);
   -webkit-box-shadow: 0 1px 1px rgba(255,255,255,.1);
   -moz-box-shadow: 0 1px 1px rgba(255,255,255,.1);
+  -o-box-shadow: 0 1px 1px rgba(255,255,255,.1);
   box-shadow: 0 1px 1px rgba(255,255,255,.1);
 }
 
 #tt-tb input[type="text"]:focus {
   background: #54514b;
-  background: -webkit-gradient(linear, left top, left bottom, from(#54514b), to(#42403B));
+  background: -webkit-gradient(linear, left top, left bottom, from(#54514b), to(#42403b));
   background: -moz-linear-gradient(#54514b, #42403B);
+  background-image: -o-linear-gradient(#54514b, #42403B);
+  background-image: -ms-linear-gradient(left top, #54514b 0%, #42403B 100%);
   outline: none;
   color: #fff;
 }
@@ -123,4 +132,5 @@
   padding: 10px;
   width: 710px;
   margin-top: 5px;
+  resize: vertical; /* So that textarea cannot be resized into adjacent text */
 }
