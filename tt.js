@@ -1,5 +1,9 @@
 (function() {
   
+  var Keys = {
+    UP: 38, DOWN: 40, 
+  }
+  
   $.log = function(msg) {
     if(console && typeof console.log === 'function') {
       console.log('TT: ' + msg);
@@ -167,9 +171,9 @@
       
       // Text inputs
       _controls.keydown(function(event) {
-        if(event.keyCode === $.ui.keyCode.UP || event.keyCode === $.ui.keyCode.DOWN) {
+        if(event.keyCode === Keys.UP || event.keyCode === Keys.DOWN) {
           event.preventDefault();
-          spin($(this), event.keyCode === $.ui.keyCode.UP);
+          spin($(this), event.keyCode === Keys.UP);
         };
         self.refresh();
       }).change(_refresh).keyup(_refresh);
